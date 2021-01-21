@@ -89,7 +89,7 @@ def is_validated_english_sentence(user_input):
     """
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당 또는 필요에 따라 자유로운 수정
-    p = re.compile("[0-9]+|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\+|\=|\[|\]|\\|\}|\{|\"|\'|\;|\||\`|\~")
+    p = re.compile("[0-9]+|\_|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\+|\=|\[|\]|\\|\}|\{|\"|\'|\;|\||\`|\~")
     temp = "".join(p.findall(user_input))
     result = False
     #쓰래기 값이 없을때 길이가 0이므로, 문장부호 ,.!? 제거
@@ -104,6 +104,7 @@ def is_validated_english_sentence(user_input):
 # print(is_validated_english_sentence(".!."))
 # print(is_validated_english_sentence("!.!."))
 # print(is_validated_english_sentence("kkkkk... ^^;"))
+# print(is_validated_english_sentence("!_X_!"))
 def is_validated_morse_code(user_input):
     """
     Input:
@@ -315,8 +316,10 @@ def main():
             user_output = encoding_sentence(english_sentence)
         elif is_validated_morse_code(user_input):
             user_output = decoding_sentence(user_input)
-        else:
+        elif user_input != '0':
             user_output = "Wrong Input"
+        else:
+            break
         print(user_output)
     # ==================================
     print("Good Bye")
